@@ -1,26 +1,57 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Component } from "react";
 import './App.css';
+import { BrowserRouter as Router,Route} from "react-router-dom";
+import Feedback from './components/feedback';
+import image from './image.jpeg';
+import monstera from './monstera.jpeg';
+import Feedbacklist from './components/feedbacklist';
+import FeedbackEdit from './components/feedbackedit';
 
-function App() {
+
+class App extends Component {
+  render(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div style={{backgroundImage: `url(${image})` }}>
+            <div className="row">
+                <div className="col-md-3">
+                  </div>
+                    <div className="col-md-6">
+                    <Route path="/" exact component={Feedback}/>
+                    </div>
+                    <div className="col-md-3">
+                </div>
+   
+            </div>
+        </div>
+        <div style={{backgroundImage: `url(${monstera})`}}>
+          <div className="row">
+              <div className="col-md-1">
+                </div>
+                  <div className="col-md-10">
+                  <Route path="/view" exact component={Feedbacklist}/>
+                  </div>
+                  <div className="col-md-1">
+               </div>
+              </div>
+          </div>
+          <div style={{backgroundImage: `url(${image})`}}>
+          <div className="row">
+              <div className="col-md-3">
+                </div>
+                  <div className="col-md-6">
+                  <Route path="/edit/:id" exact component={FeedbackEdit}/>
+                  </div>
+                  <div className="col-md-3">
+               </div>
+              </div>
+          </div>
+
+    </Router>
+    
   );
+ }
 }
 
 export default App;

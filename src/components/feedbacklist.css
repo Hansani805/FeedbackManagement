@@ -1,0 +1,18 @@
+tabel{
+ table-layout: 10px;
+
+}
+
+.delete{
+     color:red;
+     font-weight: bold;
+
+}
+.edit{
+    color:blue;
+    font-weight:bold;
+
+}
+td{
+    font-weight: bold;
+}

@@ -1,0 +1,30 @@
+div {
+  
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+  
+  background-size:cover;
+  }
+  
+h1{
+    text-align: center;
+    background-color: #A28089;
+}
+
+Label{
+  font-weight:bold;
+
+}
+button{
+  position: right;
+
+}
+
+.btn{
+ 
+  padding-right: 10px;
+
+
+}
+
