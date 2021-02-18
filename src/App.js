@@ -6,7 +6,7 @@ import Feedback from './components/feedback';
 import image from './image.jpeg';
 import monstera from './monstera.jpeg';
 import Feedbacklist from './components/feedbacklist';
-import FeedbackEdit from './components/feedbackedit';
+import FeedbackReply from './components/feedbackreply';
 
 
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
               <div className="col-md-3">
                 </div>
                   <div className="col-md-6">
-                  <Route path="/edit/:id" exact component={FeedbackEdit}/>
+                  <Route path="/edit/:id" exact component={FeedbackReply}/>
                   </div>
                   <div className="col-md-3">
                </div>

@@ -6,8 +6,10 @@ import {Col} from 'react-bootstrap';
 import {Row} from 'react-bootstrap';
 import './feedback.css';
 import axios from 'axios';
+import StarRatings from 'react-star-ratings';
 
 class Feedback extends Component{
+        
     constructor(props){
         super(props);
 
@@ -15,9 +17,8 @@ class Feedback extends Component{
         this.onChangeGuestName =this.onChangeGuestName.bind(this);
         this.onChangeEmailAddress = this.onChangeEmailAddress.bind(this);
         this.onChangeTelephoneNumber=this.onChangeTelephoneNumber.bind(this);
-        //this.onChangeFeedbackType = this.onChangeFeedbackType.bind(this);
+        this.onChangeDate=this.onChangeDate.bind(this);
         this.onChangeFeedbackPriority=this.onChangeFeedbackPriority.bind(this);
-        this.onChangeFeedbackTypeId=this.onChangeFeedbackTypeId.bind(this);
         this.onChangeComment=this.onChangeComment.bind(this);
         this.onSubmit=this.onSubmit.bind(this);
 
@@ -26,9 +27,9 @@ class Feedback extends Component{
                 feedback_guestname:'',
                 feedback_emailaddress:'',
                 feedback_telephonenumber:Number,
-                //feedback_type:'',
+                feedback_date:Date,
                 feedback_priority:'',
-                feedback_typeid:'',
+                //feedback_typeid:'',
                 feedback_comment:'',
                 feedback_completed:false
 
@@ -70,13 +71,19 @@ onChangeTelephoneNumber(e){
 
 }
 
-/*onChangeFeedbackType(e){
+onChangeDate(e){
     this.setState ({
-       feedback_type:e.target.value
+     feedback_date:e.target.value
 
      });
 
-}*/
+}
+
+
+
+
+
+
 
 onChangeFeedbackPriority(e){
     this.setState ({
@@ -86,13 +93,19 @@ onChangeFeedbackPriority(e){
 
 }
 
-onChangeFeedbackTypeId(e){
+changeRating( newRating, name ) {
+    this.setState({
+      rating: newRating
+    });
+  }
+
+/*onChangeFeedbackTypeId(e){
     this.setState ({
        feedback_typeid:e.target.value
 
      });
 
-}
+}*/
 
 onChangeComment(e){
     this.setState ({
@@ -110,9 +123,8 @@ onSubmit(e){
     console.log(`Guest Name: ${this.state.feedback_guestname}`);
     console.log(`Email Address: ${this.state.feedback_emailaddress}`);
     console.log(`Telephone Number: ${this.state.feedback_telephonenumber}`);
-   // console.log('Feedback Type: ${this.state.feedback_type}');
+    console.log(`Date :${this.state.feedback_date}`);
     console.log(`Feedback Priority: ${this.state.feedback_priority}`);
-    console.log(`Feedback TypeId: ${this.state.feedback_typeid}`);
     console.log(`Comment: ${this.state.feedback_comment}`);
     console.log(`Feedback Completed: ${this.state.feedback_completed}`);
 
@@ -122,8 +134,8 @@ onSubmit(e){
         feedback_guestname:this.state.feedback_guestname,
         feedback_emailaddress:this.state.feedback_emailaddress,
         feedback_telephonenumber:this.state.feedback_telephonenumber,
+        feedback_date:this.state.feedback_date,
         feedback_priority:this.state.feedback_priority,
-        feedback_typeid:this.state.feedback_typeid,
         feedback_comment:this.state.feedback_comment,
         feedback_completed:this.state.feedback_completed
     }
@@ -139,20 +151,19 @@ onSubmit(e){
                 feedback_guestname:'',
                 feedback_emailaddress:'',
                 feedback_telephonenumber:'',
-                //feedback_type:'',
+                feedback_date:Date,
                 feedback_priority:'',
-                feedback_typeid:'',
                 feedback_comment:'',
                 feedback_completed:false
       
      });
 
+
+     
 }
 
 
-
-
-
+ 
     render(){
         return(
             <div>
@@ -216,67 +227,90 @@ onSubmit(e){
                                 />
                                 </Col>
                                 <br/>
+                                  
+                                <Form.Label >
+                                Date : 
+                                </Form.Label>
+                                <Col sm={20}>
+                                <Form.Control 
+                                type="date" 
+                                placeholder="dd/mm/yyyy" 
+                                id="date" 
+                                value={this.state.feedback_date}
+                                onChange={this.onChangeDate}
+                                
+                                />
+                                </Col>
+                                <br/>
+
+
 
                             
                                 <fieldset>
-                            
-                                    <Form.Label>
-                                        Feedback Type : 
+
+
+                                <Form.Label>
+                                        Rate: 
                                     </Form.Label>
+                            
+                                    
                                     
                                         <Form.Check
                                         type="radio"
                                         name="priorityOptions"
-                                        id="priorityAbout_Accommodation"
-                                        value="About_Accommodation"
-                                        label="About_Accommodation"
-                                        checked={this.state.feedback_priority==='About_Accommodation'}
+                                        id="priority_Review_of_Property"
+                                        value="Review_of_Property"
+                                        label="Review of Property"
+                                        checked={this.state.feedback_priority==='Review_of_Property'}
                                         onChange={this.onChangeFeedbackPriority}
                                         />
                                         <br/>
+
+                                        <StarRatings className="star"
+                                        starRatedColor=""
+                                        numberOfStars={5}
+                                        name='rating'
+                                        starDimension="40px"
+                                        starSpacing="15px"
+                                        rating={this.state.rating}
+                                        changeRating={this.changeRating}
+
+                                        />
+                                        <br/>
+                                        <br/>
+
+                                    
+                                    
                                        
                                         
                                         <Form.Check
                                         type="radio"
                                         name="priorityOptions"
-                                        id="priorityAbout_owner"
-                                        value="About_owner"
-                                        label="About_owner"
-                                        checked={this.state.feedback_priority==='About_owner'}
+                                        id="priority_Review_of_Owner"
+                                        value="Review_of_Owner"
+                                        label="Review of Owner"
+                                        checked={this.state.feedback_priority==='Review_of_Owner'}
                                         onChange={this.onChangeFeedbackPriority}
                                         />
                                         <br/>
-                                        
 
-                                        <Form.Check
-                                        type="radio"
-                                        name="priorityOptions"
-                                        id="priorityOthers"
-                                        value="Others"
-                                        label="Others"
-                                        checked={this.state.feedback_priority==='Others'}
-                                        onChange={this.onChangeFeedbackPriority}
+                                        <StarRatings className="star"
+                                        starRatedColor=""
+                                        numberOfStars={5}
+                                        name='rating'
+                                        starDimension="40px"
+                                        starSpacing="15px"
+                                        rating={this.state.rating}
+                                        changeRating={this.changeRating}
+
                                         />
-                                        
+
                             
                                 </fieldset>
                                 <br/>
 
                         
-                                <Form.Label >
-                                Feedback Type ID : 
-                                </Form.Label>
-                                <Col sm={20}>
-                                <Form.Control 
-                                type="fedid" 
-                                placeholder="Feedback Type ID" 
-                                id="ftid" 
-                                value={this.state.feedback_typeid}
-                                onChange={this.onChangeFeedbackTypeId}
                                 
-                                />
-                                </Col>
-                                <br/>
                         
                                 <Form.Label>
                                 Feel free to add any other comments or suggestion :
@@ -309,5 +343,8 @@ onSubmit(e){
                 );
             }
         }
+
+
+
 
 export default Feedback;

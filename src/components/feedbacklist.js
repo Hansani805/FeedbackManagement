@@ -12,17 +12,15 @@ const Feedback = props =>(
         <td className={props.feedback.feedback_completed ? 'completed' :''}>{props.feedback.feedback_guestname}</td>
         <td className={props.feedback.feedback_completed ? 'completed' :''}>{props.feedback.feedback_emailaddress}</td>
         <td className={props.feedback.feedback_completed ? 'completed' :''}>{props.feedback.feedback_telephonenumber}</td>
+        <td className={props.feedback.feedback_date ? 'completed':''}>{props.feedback.feedback_date}</td>
         <td className={props.feedback.feedback_completed ? 'completed' :''}>{props.feedback.feedback_priority}</td>
-        <td className={props.feedback.feedback_completed ? 'completed' :''}>{props.feedback.feedback_typeid}</td>
         <td className={props.feedback.feedback_completed ? 'completed' :''}>{props.feedback.feedback_comment}</td>
+       
         <td>
-            <Link className="edit" to={"/edit/"+props.feedback._id}>Edit</Link>
+            <Link className="edit" to={"/edit/"+props.feedback._id}>Reply</Link>
             
         </td>
-        <td>
-            
-            <Link className="delete"  to={"/delete/"+props.feedback._id}>Delete</Link>
-        </td>
+        
 
 
 
@@ -76,9 +74,11 @@ class Feedbacklist extends Component {
                         <th>Guest Name</th>
                         <th>Email Address</th>
                         <th>Telephone Number</th>
+                        <th>Date</th>
                         <th>Feedback Type</th>
-                        <th>Feedback Type ID</th>
+                     
                         <th>Comments or Suggestion</th>
+                       
                         <th colSpan="2">Action</th>
                         
                     </tr>
